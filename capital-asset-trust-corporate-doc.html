@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Capital Asset Trust — Corporate Command Structure</title>
+  <style>
+    :root {
+      --gold: #C9A84C;
+      --gold-light: #E8C97A;
+      --gold-dark: #8B6914;
+      --black: #0A0A0A;
+      --charcoal: #1A1A1A;
+      --dark: #111111;
+      --text: #E8E8E8;
+      --muted: #A0A0A0;
+      --border: #2A2A2A;
+      --accent: #C9A84C22;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: var(--black);
+      color: var(--text);
+      font-family: 'Georgia', serif;
+      line-height: 1.75;
+    }
+
+    /* ── HEADER ── */
+    header {
+      background: linear-gradient(135deg, var(--charcoal) 0%, #0F0F0F 60%, #1C1500 100%);
+      border-bottom: 2px solid var(--gold);
+      padding: 60px 40px 50px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    header::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at center top, #C9A84C18 0%, transparent 65%);
+      pointer-events: none;
+    }
+    .seal {
+      display: inline-block;
+      width: 90px;
+      height: 90px;
+      border: 3px solid var(--gold);
+      border-radius: 50%;
+      line-height: 84px;
+      font-size: 36px;
+      color: var(--gold);
+      margin-bottom: 20px;
+      box-shadow: 0 0 30px #C9A84C40;
+    }
+    header h1 {
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      color: var(--gold);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+    header h2 {
+      font-size: clamp(0.85rem, 2vw, 1.1rem);
+      color: var(--muted);
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      margin-top: 10px;
+      font-weight: 400;
+    }
+    .badge-row {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 22px;
+      flex-wrap: wrap;
+    }
+    .badge {
+      border: 1px solid var(--gold-dark);
+      color: var(--gold-light);
+      font-family: 'Courier New', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.18em;
+      padding: 5px 16px;
+      text-transform: uppercase;
+    }
+
+    /* ── LAYOUT ── */
+    main { max-width: 1100px; margin: 0 auto; padding: 50px 30px 80px; }
+
+    /* ── SECTION HEADERS ── */
+    .section-title {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin: 55px 0 28px;
+    }
+    .section-title::before, .section-title::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--gold-dark));
+    }
+    .section-title::after {
+      background: linear-gradient(to left, transparent, var(--gold-dark));
+    }
+    .section-title h3 {
+      color: var(--gold);
+      font-size: 0.8rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      white-space: nowrap;
+      font-weight: 600;
+    }
+
+    /* ── MISSION BOX ── */
+    .mission-box {
+      border: 1px solid var(--gold-dark);
+      background: var(--accent);
+      padding: 28px 32px;
+      position: relative;
+    }
+    .mission-box::before {
+      content: '"';
+      position: absolute;
+      top: -18px;
+      left: 24px;
+      font-size: 4rem;
+      color: var(--gold);
+      line-height: 1;
+    }
+    .mission-box p {
+      font-size: 1.1rem;
+      color: var(--text);
+      font-style: italic;
+      line-height: 1.85;
+    }
+
+    /* ── ENTITY CARDS ── */
+    .entity-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 24px;
+      margin-top: 10px;
+    }
+    .entity-card {
+      border: 1px solid var(--border);
+      background: var(--charcoal);
+      padding: 28px 26px;
+      position: relative;
+      transition: border-color 0.25s, box-shadow 0.25s;
+    }
+    .entity-card:hover {
+      border-color: var(--gold-dark);
+      box-shadow: 0 4px 24px #C9A84C18;
+    }
+    .entity-card.tier-1 { border-top: 3px solid var(--gold); }
+    .entity-card.tier-2 { border-top: 3px solid #4CA8C9; }
+    .entity-card.tier-3 { border-top: 3px solid #4CC97A; }
+    .entity-card.tier-4 { border-top: 3px solid #C94CA8; }
+    .entity-card.tier-5 { border-top: 3px solid #C94C4C; }
+
+    .tier-label {
+      font-family: 'Courier New', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+    .entity-name {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--gold-light);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .entity-role {
+      font-size: 0.75rem;
+      color: var(--gold-dark);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+      font-family: 'Courier New', monospace;
+    }
+    .entity-function {
+      font-size: 0.9rem;
+      color: #CCCCCC;
+      margin-bottom: 14px;
+      line-height: 1.7;
+    }
+    .life-impact {
+      font-size: 0.82rem;
+      color: var(--gold);
+      border-left: 2px solid var(--gold-dark);
+      padding-left: 12px;
+      font-style: italic;
+    }
+
+    /* ── PRIORITY TABLE ── */
+    .priority-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+      font-size: 0.88rem;
+    }
+    .priority-table thead tr {
+      background: var(--charcoal);
+      border-bottom: 2px solid var(--gold-dark);
+    }
+    .priority-table thead th {
+      color: var(--gold);
+      padding: 14px 16px;
+      text-align: left;
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+    .priority-table tbody tr {
+      border-bottom: 1px solid var(--border);
+      transition: background 0.2s;
+    }
+    .priority-table tbody tr:hover { background: var(--accent); }
+    .priority-table tbody td {
+      padding: 14px 16px;
+      color: var(--text);
+      vertical-align: top;
+    }
+    .priority-num {
+      font-family: 'Courier New', monospace;
+      color: var(--gold);
+      font-weight: 700;
+      font-size: 1.1rem;
+    }
+    .tag {
+      display: inline-block;
+      padding: 2px 10px;
+      font-size: 0.68rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-family: 'Courier New', monospace;
+      font-weight: 700;
+    }
+    .tag-critical { background: #C94C4C22; color: #FF6B6B; border: 1px solid #C94C4C; }
+    .tag-high     { background: #C9A84C22; color: var(--gold-light); border: 1px solid var(--gold-dark); }
+    .tag-medium   { background: #4CA8C922; color: #7ECFED; border: 1px solid #4CA8C9; }
+
+    /* ── LIFESTYLE MATRIX ── */
+    .lifestyle-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 18px;
+      margin-top: 10px;
+    }
+    .lifestyle-card {
+      background: var(--charcoal);
+      border: 1px solid var(--border);
+      padding: 22px 20px;
+    }
+    .lifestyle-goal {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 10px;
+    }
+    .lifestyle-entity {
+      font-size: 0.75rem;
+      color: var(--gold);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+      font-family: 'Courier New', monospace;
+    }
+    .lifestyle-milestone {
+      font-size: 0.82rem;
+      color: var(--muted);
+      border-top: 1px solid var(--border);
+      padding-top: 10px;
+      margin-top: 8px;
+    }
+    .lifestyle-milestone span {
+      color: var(--gold-dark);
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      display: block;
+      margin-bottom: 4px;
+      font-family: 'Courier New', monospace;
+    }
+
+    /* ── NORTH STAR ── */
+    .north-star {
+      background: linear-gradient(135deg, var(--charcoal), #0F0F0F);
+      border: 1px solid var(--gold-dark);
+      padding: 36px 32px;
+      position: relative;
+      overflow: hidden;
+    }
+    .north-star::before {
+      content: '';
+      position: absolute;
+      top: -40px; right: -40px;
+      width: 140px; height: 140px;
+      border-radius: 50%;
+      background: radial-gradient(circle, #C9A84C18, transparent 70%);
+      pointer-events: none;
+    }
+    .north-star ol {
+      list-style: none;
+      counter-reset: rule;
+    }
+    .north-star ol li {
+      counter-increment: rule;
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.95rem;
+    }
+    .north-star ol li:last-child { border-bottom: none; }
+    .north-star ol li::before {
+      content: "0" counter(rule);
+      font-family: 'Courier New', monospace;
+      font-size: 0.75rem;
+      color: var(--gold);
+      font-weight: 700;
+      min-width: 28px;
+      padding-top: 2px;
+    }
+    .rule-key { color: var(--gold-light); font-weight: 700; }
+
+    .master-goal {
+      margin-top: 28px;
+      padding: 20px 24px;
+      background: #C9A84C12;
+      border-left: 4px solid var(--gold);
+      font-size: 1rem;
+      font-style: italic;
+      color: var(--text);
+      line-height: 1.8;
+    }
+
+    /* ── SESSION LOG ── */
+    .session-log {
+      background: var(--charcoal);
+      border: 1px solid var(--border);
+      padding: 24px 26px;
+    }
+    .session-row {
+      display: grid;
+      grid-template-columns: 100px 1fr;
+      gap: 12px;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.85rem;
+    }
+    .session-row:last-child { border-bottom: none; }
+    .session-label {
+      font-family: 'Courier New', monospace;
+      color: var(--gold-dark);
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding-top: 2px;
+    }
+    .session-value { color: var(--text); }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border);
+      text-align: center;
+      padding: 28px;
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      color: var(--muted);
+      text-transform: uppercase;
+      margin-top: 60px;
+    }
+    footer strong { color: var(--gold-dark); }
+
+    @media (max-width: 600px) {
+      header { padding: 40px 20px 35px; }
+      main { padding: 30px 16px 60px; }
+      .session-row { grid-template-columns: 1fr; gap: 4px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══════════════════ HEADER ══════════════════ -->
+<header>
+  <div class="seal">&#9670;</div>
+  <h1>Capital Asset Trust</h1>
+  <h2>Corporate Command Structure Document</h2>
+  <div class="badge-row">
+    <div class="badge">Confidential</div>
+    <div class="badge">Internal Use Only</div>
+    <div class="badge">Version 1.0</div>
+    <div class="badge">May 23, 2026</div>
+  </div>
+</header>
+
+<!-- ══════════════════ MAIN ══════════════════ -->
+<main>
+
+  <!-- MISSION -->
+  <div class="section-title"><h3>Mission Statement</h3></div>
+  <div class="mission-box">
+    <p>Capital Asset Trust is the holder, director, portfolio manager, investment manager, and protector of all companies, assets, investments, and wealth within this corporate structure. The singular purpose of this structure is to build, protect, and grow the systems that fund and finance the best possible human life — freedom, experiences, security, and legacy.</p>
+  </div>
+
+  <!-- ENTITY HIERARCHY -->
+  <div class="section-title"><h3>Corporate Entity Hierarchy</h3></div>
+  <div class="entity-grid">
+
+    <div class="entity-card tier-1">
+      <div class="tier-label">Tier 1 — Foundation &amp; Protection</div>
+      <div class="entity-name">Capital Asset Trust</div>
+      <div class="entity-role">Holder | Director | Portfolio Manager | Investment Manager | Protector</div>
+      <div class="entity-function">Owns, controls, and shields ALL entities, assets, intellectual property, and wealth within the structure. Nothing enters or exits without strategic intent. The vault that holds everything.</div>
+      <div class="life-impact">Complete asset protection, generational wealth preservation, full legal insulation from personal liability.</div>
+    </div>
+
+    <div class="entity-card tier-2">
+      <div class="tier-label">Tier 2 — Fuel Engine</div>
+      <div class="entity-name">Credit Rights Group</div>
+      <div class="entity-role">Credit Education | Funding &amp; Financing Division</div>
+      <div class="entity-function">Provides a thorough credit education curriculum. Maintains and improves credit, credit scores, and credit ratings for all companies. Identifies and secures the best funding and financing deals across the entire corporate structure.</div>
+      <div class="life-impact">Purchasing power, leverage, access to capital at lowest cost — enabling every acquisition and expansion.</div>
+    </div>
+
+    <div class="entity-card tier-3">
+      <div class="tier-label">Tier 3 — Wealth Builder</div>
+      <div class="entity-name">Lake River Partners</div>
+      <div class="entity-role">Acquisition &amp; Oversight — Real Estate &amp; Mortgage Holdings</div>
+      <div class="entity-function">Acquires and oversees all management companies maintaining real estate and mortgage holdings. Primary driver of long-term wealth accumulation and passive income cash flow.</div>
+      <div class="life-impact">Passive income streams, real estate equity, and financial independence through asset accumulation.</div>
+    </div>
+
+    <div class="entity-card tier-4">
+      <div class="tier-label">Tier 4 — Growth Engine</div>
+      <div class="entity-name">Get-It Club</div>
+      <div class="entity-role">Marketing | Advertising | Sales | Lead Generation</div>
+      <div class="entity-function">Manages all marketing, advertising, sales, and lead generation for all companies in the trust structure AND for all external client companies. Drives revenue across the board.</div>
+      <div class="life-impact">Business growth without the grind — automated lead flow and revenue generation for the entire structure.</div>
+    </div>
+
+    <div class="entity-card tier-5">
+      <div class="tier-label">Tier 5 — Protection Layer</div>
+      <div class="entity-name">CyberSecurity Home Lab</div>
+      <div class="entity-role">Offensive &amp; Defensive CyberSecurity System</div>
+      <div class="entity-function">Military-equipped offensive and defensive cybersecurity system protecting all companies, assets, investments, and money in all forms across every entity. Operates 24/7. Non-negotiable infrastructure.</div>
+      <div class="life-impact">Digital security, financial protection, business continuity, and peace of mind — always on.</div>
+    </div>
+
+  </div>
+
+  <!-- PRIORITY WORK TABLE -->
+  <div class="section-title"><h3>Master Priority Work Table</h3></div>
+  <table class="priority-table">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Focus Area</th>
+        <th>Entity</th>
+        <th>Next Action</th>
+        <th>Urgency</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="priority-num">01</span></td>
+        <td>Legal Structure &amp; Trust Formation</td>
+        <td>Capital Asset Trust</td>
+        <td>Establish trust documents, EIN, bylaws &amp; banking</td>
+        <td><span class="tag tag-critical">Critical</span></td>
+      </tr>
+      <tr>
+        <td><span class="priority-num">02</span></td>
+        <td>Credit Profile Assessment</td>
+        <td>Credit Rights Group</td>
+        <td>Pull all 3 bureau reports, establish credit score baseline</td>
+        <td><span class="tag tag-critical">Critical</span></td>
+      </tr>
+      <tr>
+        <td><span class="priority-num">03</span></td>
+        <td>Funding &amp; Financing Pipeline</td>
+        <td>Credit Rights Group</td>
+        <td>Identify best business credit programs, apply for lines</td>
+        <td><span class="tag tag-high">High</span></td>
+      </tr>
+      <tr>
+        <td><span class="priority-num">04</span></td>
+        <td>Real Estate Acquisition Strategy</td>
+        <td>Lake River Partners</td>
+        <td>Define target markets, deal criteria, management company targets</td>
+        <td><span class="tag tag-high">High</span></td>
+      </tr>
+      <tr>
+        <td><span class="priority-num">05</span></td>
+        <td>CyberSecurity Baseline</td>
+        <td>CyberSecurity Home Lab</td>
+        <td>Audit current digital exposure, deploy baseline protections</td>
+        <td><span class="tag tag-high">High</span></td>
+      </tr>
+      <tr>
+        <td><span class="priority-num">06</span></td>
+        <td>Marketing Infrastructure</td>
+        <td>Get-It Club</td>
+        <td>Build lead gen systems, brand identity &amp; client pipeline</td>
+        <td><span class="tag tag-medium">Medium</span></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- LIFESTYLE MATRIX -->
+  <div class="section-title"><h3>Life &amp; Lifestyle Alignment Matrix</h3></div>
+  <div class="lifestyle-grid">
+
+    <div class="lifestyle-card">
+      <div class="lifestyle-goal">Financial Freedom / Passive Income</div>
+      <div class="lifestyle-entity">&#9654; Lake River Partners</div>
+      <div class="lifestyle-milestone"><span>Unlock Milestone</span>First 3 managed properties producing consistent cash flow</div>
+    </div>
+
+    <div class="lifestyle-card">
+      <div class="lifestyle-goal">Best Funding at Lowest Cost</div>
+      <div class="lifestyle-entity">&#9654; Credit Rights Group</div>
+      <div class="lifestyle-milestone"><span>Unlock Milestone</span>750+ credit score, $500K+ business credit lines active</div>
+    </div>
+
+    <div class="lifestyle-card">
+      <div class="lifestyle-goal">Business Growth Without Grinding</div>
+      <div class="lifestyle-entity">&#9654; Get-It Club</div>
+      <div class="lifestyle-milestone"><span>Unlock Milestone</span>Automated lead generation running for all entities</div>
+    </div>
+
+    <div class="lifestyle-card">
+      <div class="lifestyle-goal">Complete Asset Protection</div>
+      <div class="lifestyle-entity">&#9654; Capital Asset Trust</div>
+      <div class="lifestyle-milestone"><span>Unlock Milestone</span>Trust fully funded and legally insulated</div>
+    </div>
+
+    <div class="lifestyle-card">
+      <div class="lifestyle-goal">Digital &amp; Financial Security</div>
+      <div class="lifestyle-entity">&#9654; CyberSecurity Home Lab</div>
+      <div class="lifestyle-milestone"><span>Unlock Milestone</span>Full monitoring and active threat response deployed</div>
+    </div>
+
+    <div class="lifestyle-card">
+      <div class="lifestyle-goal">Time &amp; Location Freedom</div>
+      <div class="lifestyle-entity">&#9654; All Entities — Systemized</div>
+      <div class="lifestyle-milestone"><span>Unlock Milestone</span>All operations run by managers — not owner-operated</div>
+    </div>
+
+  </div>
+
+  <!-- NORTH STAR -->
+  <div class="section-title"><h3>Operating Rules — North Star Principles</h3></div>
+  <div class="north-star">
+    <ol>
+      <li><span><span class="rule-key">Capital Asset Trust</span> holds EVERYTHING. No personal exposure.</span></li>
+      <li><span><span class="rule-key">Credit Rights Group</span> funds EVERY move. Cash is king — credit is leverage.</span></li>
+      <li><span><span class="rule-key">Lake River Partners</span> builds WEALTH. Acquire, manage, compound.</span></li>
+      <li><span><span class="rule-key">Get-It Club</span> creates FLOW. Revenue for us and our clients.</span></li>
+      <li><span><span class="rule-key">CyberSecurity Home Lab</span> PROTECTS it all. 24/7. No exceptions.</span></li>
+    </ol>
+    <div class="master-goal">
+      <strong>MASTER GOAL:</strong> Build systems that fund and finance the best possible human life — freedom, experiences, security, and legacy.
+    </div>
+  </div>
+
+  <!-- SESSION LOG -->
+  <div class="section-title"><h3>Session Log — Chat Filing System</h3></div>
+  <div class="session-log">
+    <div class="session-row">
+      <div class="session-label">Session</div>
+      <div class="session-value">001</div>
+    </div>
+    <div class="session-row">
+      <div class="session-label">Date</div>
+      <div class="session-value">May 23, 2026</div>
+    </div>
+    <div class="session-row">
+      <div class="session-label">Topic</div>
+      <div class="session-value">Corporate Trust Structure Overview — All Entities</div>
+    </div>
+    <div class="session-row">
+      <div class="session-label">Decisions</div>
+      <div class="session-value">Defined full entity hierarchy, roles, priorities, operating rules, and life alignment matrix.</div>
+    </div>
+    <div class="session-row">
+      <div class="session-label">Open Items</div>
+      <div class="session-value">Legal trust documents, credit audit (all 3 bureaus), all entity setup, CyberSecurity baseline deployment.</div>
+    </div>
+    <div class="session-row">
+      <div class="session-label">Status</div>
+      <div class="session-value"><span class="tag tag-high">Active</span></div>
+    </div>
+  </div>
+
+</main>
+
+<!-- ══════════════════ FOOTER ══════════════════ -->
+<footer>
+  <p><strong>Capital Asset Trust</strong> &nbsp;|&nbsp; Corporate Command Structure &nbsp;|&nbsp; Version 1.0 &nbsp;|&nbsp; Confidential &mdash; Internal Use Only</p>
+</footer>
+
+</body>
+</html>
