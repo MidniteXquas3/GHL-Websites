@@ -1,0 +1,1114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Capital Asset Trust — Table of Context</title>
+  <style>
+    :root {
+      --gold: #C9A84C;
+      --gold-light: #E8C97A;
+      --gold-dark: #8B6914;
+      --black: #0A0A0A;
+      --charcoal: #161616;
+      --dark: #111111;
+      --card: #1A1A1A;
+      --text: #E8E8E8;
+      --muted: #888888;
+      --border: #242424;
+      --accent: #C9A84C14;
+
+      --cat-strategy:   #C9A84C;
+      --cat-legal:      #4CA8C9;
+      --cat-financial:  #4CC97A;
+      --cat-marketing:  #C94CA8;
+      --cat-security:   #C94C4C;
+      --cat-ops:        #9B7BFF;
+      --cat-docs:       #FF9B4C;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: var(--black);
+      color: var(--text);
+      font-family: 'Georgia', serif;
+      line-height: 1.7;
+    }
+
+    /* ──────────────── HEADER ──────────────── */
+    header {
+      background: linear-gradient(160deg, #141414 0%, #0D0D0D 50%, #120E00 100%);
+      border-bottom: 2px solid var(--gold);
+      padding: 52px 40px 44px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    header::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 50% 0%, #C9A84C1A 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .header-eyebrow {
+      font-family: 'Courier New', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.35em;
+      color: var(--gold-dark);
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+    header h1 {
+      font-size: clamp(1.6rem, 3.5vw, 2.6rem);
+      color: var(--gold);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+    header h2 {
+      font-size: clamp(0.8rem, 1.8vw, 1rem);
+      color: var(--muted);
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      margin-top: 8px;
+      font-weight: 400;
+    }
+    .header-meta {
+      display: flex;
+      justify-content: center;
+      gap: 28px;
+      margin-top: 24px;
+      flex-wrap: wrap;
+    }
+    .meta-chip {
+      font-family: 'Courier New', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.15em;
+      color: var(--gold);
+      border: 1px solid var(--gold-dark);
+      padding: 4px 14px;
+      text-transform: uppercase;
+    }
+
+    /* ──────────────── NAV TABS ──────────────── */
+    .nav-tabs {
+      background: var(--charcoal);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      gap: 0;
+      overflow-x: auto;
+      padding: 0 30px;
+    }
+    .nav-tab {
+      font-family: 'Courier New', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      padding: 14px 20px;
+      border-bottom: 2px solid transparent;
+      white-space: nowrap;
+      cursor: pointer;
+      text-decoration: none;
+    }
+    .nav-tab:hover { color: var(--gold-light); }
+    .nav-tab.active { color: var(--gold); border-bottom-color: var(--gold); }
+
+    /* ──────────────── LAYOUT ──────────────── */
+    main { max-width: 1200px; margin: 0 auto; padding: 48px 28px 90px; }
+
+    /* ──────────────── SECTION DIVIDERS ──────────────── */
+    .section-title {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin: 60px 0 26px;
+    }
+    .section-title::before, .section-title::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--gold-dark));
+    }
+    .section-title::after { background: linear-gradient(to left, transparent, var(--gold-dark)); }
+    .section-title h3 {
+      color: var(--gold);
+      font-size: 0.72rem;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      white-space: nowrap;
+      font-weight: 600;
+    }
+
+    /* ──────────────── OBJECTIVE BANNER ──────────────── */
+    .objective-banner {
+      background: linear-gradient(135deg, var(--charcoal), #0E0900);
+      border: 1px solid var(--gold-dark);
+      border-left: 4px solid var(--gold);
+      padding: 22px 26px;
+      font-size: 1rem;
+      font-style: italic;
+      color: var(--text);
+      line-height: 1.85;
+      margin-bottom: 10px;
+    }
+    .objective-banner strong { color: var(--gold-light); font-style: normal; }
+
+    /* ──────────────── CATEGORY LEGEND ──────────────── */
+    .legend {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin: 18px 0 32px;
+    }
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      font-family: 'Courier New', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .legend-dot {
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    /* ──────────────── MASTER TOC TABLE ──────────────── */
+    .toc-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.84rem;
+    }
+    .toc-table thead tr {
+      background: var(--charcoal);
+      border-bottom: 2px solid var(--gold-dark);
+    }
+    .toc-table thead th {
+      color: var(--gold);
+      padding: 12px 14px;
+      text-align: left;
+      font-size: 0.66rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+    .toc-table tbody tr {
+      border-bottom: 1px solid var(--border);
+      transition: background 0.18s;
+    }
+    .toc-table tbody tr:hover { background: var(--accent); }
+    .toc-table tbody td {
+      padding: 13px 14px;
+      vertical-align: top;
+      color: var(--text);
+    }
+    .toc-num {
+      font-family: 'Courier New', monospace;
+      color: var(--gold);
+      font-weight: 700;
+      font-size: 0.9rem;
+    }
+    .cat-pill {
+      display: inline-block;
+      padding: 2px 10px;
+      font-size: 0.63rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-family: 'Courier New', monospace;
+      font-weight: 700;
+      border-radius: 2px;
+      white-space: nowrap;
+    }
+    .topic-title { font-weight: 600; color: var(--text); margin-bottom: 4px; }
+    .topic-sub   { font-size: 0.78rem; color: var(--muted); line-height: 1.5; }
+
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: 'Courier New', monospace;
+      font-size: 0.62rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 3px 10px;
+      border: 1px solid;
+      white-space: nowrap;
+    }
+    .status-pill::before {
+      content: '';
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: currentColor;
+      flex-shrink: 0;
+    }
+    .s-complete  { color: #4CC97A; border-color: #4CC97A44; }
+    .s-active    { color: var(--gold-light); border-color: var(--gold-dark); }
+    .s-pending   { color: #4CA8C9; border-color: #4CA8C944; }
+    .s-critical  { color: #FF6B6B; border-color: #C94C4C44; }
+    .s-queued    { color: var(--muted); border-color: var(--border); }
+
+    .entity-tag {
+      font-family: 'Courier New', monospace;
+      font-size: 0.7rem;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+    .pri-dot {
+      display: inline-block;
+      width: 22px; height: 22px;
+      border-radius: 50%;
+      background: var(--charcoal);
+      border: 2px solid var(--gold-dark);
+      text-align: center;
+      line-height: 18px;
+      font-family: 'Courier New', monospace;
+      font-size: 0.68rem;
+      font-weight: 700;
+      color: var(--gold);
+    }
+
+    /* ──────────────── ENTITY THREADS ──────────────── */
+    .entity-threads {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 20px;
+    }
+    .thread-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      padding: 0;
+      overflow: hidden;
+    }
+    .thread-header {
+      padding: 16px 20px 14px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+    }
+    .thread-entity-name {
+      font-size: 0.82rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+    .thread-count {
+      font-family: 'Courier New', monospace;
+      font-size: 0.66rem;
+      color: var(--muted);
+      white-space: nowrap;
+      padding-top: 3px;
+    }
+    .thread-topic {
+      display: flex;
+      gap: 14px;
+      padding: 12px 20px;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.82rem;
+      align-items: flex-start;
+    }
+    .thread-topic:last-child { border-bottom: none; }
+    .thread-session {
+      font-family: 'Courier New', monospace;
+      font-size: 0.65rem;
+      color: var(--gold-dark);
+      min-width: 36px;
+      padding-top: 2px;
+    }
+    .thread-text { color: var(--text); flex: 1; line-height: 1.55; }
+    .thread-text small { display: block; color: var(--muted); font-size: 0.75rem; margin-top: 3px; }
+
+    /* ──────────────── OPEN ACTIONS ──────────────── */
+    .action-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 16px;
+    }
+    .action-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      padding: 20px 22px;
+      position: relative;
+    }
+    .action-pri {
+      position: absolute;
+      top: -1px; right: 20px;
+      font-family: 'Courier New', monospace;
+      font-size: 0.62rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 3px 10px;
+    }
+    .action-num {
+      font-family: 'Courier New', monospace;
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--gold-dark);
+      margin-bottom: 8px;
+      line-height: 1;
+    }
+    .action-title {
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+    .action-entity {
+      font-family: 'Courier New', monospace;
+      font-size: 0.68rem;
+      color: var(--gold-dark);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+    .action-steps {
+      list-style: none;
+      border-top: 1px solid var(--border);
+      padding-top: 12px;
+      margin-top: 4px;
+    }
+    .action-steps li {
+      display: flex;
+      gap: 10px;
+      font-size: 0.8rem;
+      color: #BBBBBB;
+      padding: 5px 0;
+      line-height: 1.5;
+    }
+    .action-steps li::before {
+      content: '→';
+      color: var(--gold-dark);
+      flex-shrink: 0;
+    }
+
+    /* ──────────────── DECISION LOG ──────────────── */
+    .decision-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.83rem;
+    }
+    .decision-table thead tr {
+      background: var(--charcoal);
+      border-bottom: 2px solid var(--gold-dark);
+    }
+    .decision-table thead th {
+      color: var(--gold);
+      padding: 11px 14px;
+      text-align: left;
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+    .decision-table tbody tr { border-bottom: 1px solid var(--border); }
+    .decision-table tbody tr:hover { background: var(--accent); }
+    .decision-table tbody td { padding: 12px 14px; color: var(--text); vertical-align: top; }
+    .dec-id {
+      font-family: 'Courier New', monospace;
+      color: var(--gold-dark);
+      font-size: 0.75rem;
+    }
+    .dec-decision { font-weight: 600; margin-bottom: 4px; }
+    .dec-rationale { font-size: 0.77rem; color: var(--muted); }
+
+    /* ──────────────── NORTH STAR STRIP ──────────────── */
+    .north-strip {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 0;
+      border: 1px solid var(--gold-dark);
+      margin-top: 10px;
+      overflow: hidden;
+    }
+    .north-item {
+      padding: 18px 16px;
+      border-right: 1px solid var(--border);
+      text-align: center;
+    }
+    .north-item:last-child { border-right: none; }
+    .north-num {
+      font-family: 'Courier New', monospace;
+      font-size: 0.65rem;
+      color: var(--gold-dark);
+      margin-bottom: 8px;
+      letter-spacing: 0.1em;
+    }
+    .north-co {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--gold-light);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 6px;
+    }
+    .north-verb {
+      font-size: 0.72rem;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    /* ──────────────── GOAL TRACKER ──────────────── */
+    .goal-track {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 16px;
+    }
+    .goal-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      padding: 18px 20px;
+    }
+    .goal-title { font-weight: 700; font-size: 0.88rem; margin-bottom: 6px; }
+    .goal-entity {
+      font-family: 'Courier New', monospace;
+      font-size: 0.65rem;
+      color: var(--gold-dark);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 10px;
+    }
+    .goal-bar-wrap {
+      background: var(--border);
+      height: 4px;
+      width: 100%;
+      margin-bottom: 8px;
+    }
+    .goal-bar {
+      height: 4px;
+      background: linear-gradient(to right, var(--gold-dark), var(--gold));
+    }
+    .goal-status-text {
+      font-size: 0.74rem;
+      color: var(--muted);
+      display: flex;
+      justify-content: space-between;
+    }
+    .goal-status-text span { color: var(--gold); }
+
+    /* ──────────────── FOCUS QUEUE ──────────────── */
+    .focus-queue {
+      counter-reset: fq;
+      list-style: none;
+    }
+    .focus-queue li {
+      counter-increment: fq;
+      display: grid;
+      grid-template-columns: 48px 1fr auto;
+      gap: 16px;
+      align-items: center;
+      padding: 16px 20px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      margin-bottom: 10px;
+      transition: border-color 0.2s;
+    }
+    .focus-queue li:hover { border-color: var(--gold-dark); }
+    .fq-num {
+      font-family: 'Courier New', monospace;
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--gold-dark);
+      line-height: 1;
+    }
+    .fq-title { font-weight: 700; font-size: 0.9rem; margin-bottom: 4px; }
+    .fq-sub   { font-size: 0.78rem; color: var(--muted); line-height: 1.45; }
+    .fq-entity {
+      font-family: 'Courier New', monospace;
+      font-size: 0.65rem;
+      color: var(--gold);
+      text-transform: uppercase;
+      text-align: right;
+      white-space: nowrap;
+    }
+
+    /* ──────────────── FOOTER ──────────────── */
+    footer {
+      border-top: 1px solid var(--border);
+      text-align: center;
+      padding: 26px;
+      font-family: 'Courier New', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.16em;
+      color: var(--muted);
+      text-transform: uppercase;
+      margin-top: 70px;
+    }
+    footer strong { color: var(--gold-dark); }
+
+    @media (max-width: 768px) {
+      .north-strip { grid-template-columns: 1fr 1fr; }
+      .north-item { border-right: none; border-bottom: 1px solid var(--border); }
+      .focus-queue li { grid-template-columns: 36px 1fr; }
+      .fq-entity { display: none; }
+      header { padding: 36px 18px 30px; }
+      main { padding: 30px 14px 70px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ════════════════ HEADER ════════════════ -->
+<header>
+  <div class="header-eyebrow">Capital Asset Trust — Strategic Operations</div>
+  <h1>Table of Context</h1>
+  <h2>Master Chat Filing &amp; Objective Tracking System</h2>
+  <div class="header-meta">
+    <div class="meta-chip">Version 1.0</div>
+    <div class="meta-chip">Sessions: 2</div>
+    <div class="meta-chip">Last Updated: May 23, 2026</div>
+    <div class="meta-chip">Confidential</div>
+  </div>
+</header>
+
+<!-- ════════════════ NAV ════════════════ -->
+<nav class="nav-tabs">
+  <a class="nav-tab active" href="#master">Master Index</a>
+  <a class="nav-tab" href="#threads">Entity Threads</a>
+  <a class="nav-tab" href="#actions">Open Actions</a>
+  <a class="nav-tab" href="#decisions">Decision Log</a>
+  <a class="nav-tab" href="#goals">Goal Tracker</a>
+  <a class="nav-tab" href="#queue">Next Focus Queue</a>
+</nav>
+
+<!-- ════════════════ MAIN ════════════════ -->
+<main>
+
+  <!-- OBJECTIVE STATEMENT -->
+  <div class="objective-banner">
+    <strong>Master Objective:</strong> Build the systems that fund and finance the best possible human life — freedom, experiences, security, and legacy — through Capital Asset Trust and its five operating entities.
+  </div>
+
+  <!-- CATEGORY LEGEND -->
+  <div class="legend">
+    <div class="legend-item"><div class="legend-dot" style="background:var(--cat-strategy)"></div>Strategy</div>
+    <div class="legend-item"><div class="legend-dot" style="background:var(--cat-legal)"></div>Legal</div>
+    <div class="legend-item"><div class="legend-dot" style="background:var(--cat-financial)"></div>Financial</div>
+    <div class="legend-item"><div class="legend-dot" style="background:var(--cat-marketing)"></div>Marketing</div>
+    <div class="legend-item"><div class="legend-dot" style="background:var(--cat-security)"></div>Security</div>
+    <div class="legend-item"><div class="legend-dot" style="background:var(--cat-ops)"></div>Operations</div>
+    <div class="legend-item"><div class="legend-dot" style="background:var(--cat-docs)"></div>Documentation</div>
+  </div>
+
+  <!-- ── SECTION 1: MASTER INDEX ── -->
+  <div id="master" class="section-title"><h3>01 — Master Chat Index</h3></div>
+  <table class="toc-table">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Date</th>
+        <th>Topic</th>
+        <th>Category</th>
+        <th>Entity</th>
+        <th>Priority</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+
+      <tr>
+        <td><span class="toc-num">001-A</span></td>
+        <td style="white-space:nowrap;color:var(--muted);font-family:'Courier New',monospace;font-size:0.76rem;">May 23, 2026</td>
+        <td>
+          <div class="topic-title">Corporate Trust Structure — Full Entity Definition</div>
+          <div class="topic-sub">Defined all 5 entities, hierarchy, roles, functions, and life impact of each tier</div>
+        </td>
+        <td><span class="cat-pill" style="background:#C9A84C22;color:var(--cat-strategy);border:1px solid #C9A84C44;">Strategy</span></td>
+        <td><span class="entity-tag">All Entities</span></td>
+        <td><span class="pri-dot">1</span></td>
+        <td><span class="status-pill s-complete">Complete</span></td>
+      </tr>
+
+      <tr>
+        <td><span class="toc-num">001-B</span></td>
+        <td style="white-space:nowrap;color:var(--muted);font-family:'Courier New',monospace;font-size:0.76rem;">May 23, 2026</td>
+        <td>
+          <div class="topic-title">Master Priority Work Table — 6 Priority Actions</div>
+          <div class="topic-sub">Ranked work priorities from trust formation to marketing infrastructure</div>
+        </td>
+        <td><span class="cat-pill" style="background:#C9A84C22;color:var(--cat-strategy);border:1px solid #C9A84C44;">Strategy</span></td>
+        <td><span class="entity-tag">All Entities</span></td>
+        <td><span class="pri-dot">1</span></td>
+        <td><span class="status-pill s-complete">Complete</span></td>
+      </tr>
+
+      <tr>
+        <td><span class="toc-num">001-C</span></td>
+        <td style="white-space:nowrap;color:var(--muted);font-family:'Courier New',monospace;font-size:0.76rem;">May 23, 2026</td>
+        <td>
+          <div class="topic-title">Life &amp; Lifestyle Alignment Matrix</div>
+          <div class="topic-sub">Mapped 6 life goals to entities and defined unlock milestones for each</div>
+        </td>
+        <td><span class="cat-pill" style="background:#C9A84C22;color:var(--cat-strategy);border:1px solid #C9A84C44;">Strategy</span></td>
+        <td><span class="entity-tag">All Entities</span></td>
+        <td><span class="pri-dot">1</span></td>
+        <td><span class="status-pill s-complete">Complete</span></td>
+      </tr>
+
+      <tr>
+        <td><span class="toc-num">001-D</span></td>
+        <td style="white-space:nowrap;color:var(--muted);font-family:'Courier New',monospace;font-size:0.76rem;">May 23, 2026</td>
+        <td>
+          <div class="topic-title">North Star Operating Principles — 5 Rules</div>
+          <div class="topic-sub">Defined the non-negotiable operating rules that govern every decision across the structure</div>
+        </td>
+        <td><span class="cat-pill" style="background:#C9A84C22;color:var(--cat-strategy);border:1px solid #C9A84C44;">Strategy</span></td>
+        <td><span class="entity-tag">Capital Asset Trust</span></td>
+        <td><span class="pri-dot">1</span></td>
+        <td><span class="status-pill s-complete">Complete</span></td>
+      </tr>
+
+      <tr>
+        <td><span class="toc-num">001-E</span></td>
+        <td style="white-space:nowrap;color:var(--muted);font-family:'Courier New',monospace;font-size:0.76rem;">May 23, 2026</td>
+        <td>
+          <div class="topic-title">Jeffrey's 30-Day Immediate Action Guidance</div>
+          <div class="topic-sub">Three critical actions before anything else: Trust formation, credit baseline, cybersecurity audit</div>
+        </td>
+        <td><span class="cat-pill" style="background:#C94C4C22;color:var(--cat-security);border:1px solid #C94C4C44;">Operations</span></td>
+        <td><span class="entity-tag">CAT · CRG · CSL</span></td>
+        <td><span class="pri-dot">1</span></td>
+        <td><span class="status-pill s-critical">Action Required</span></td>
+      </tr>
+
+      <tr>
+        <td><span class="toc-num">002-A</span></td>
+        <td style="white-space:nowrap;color:var(--muted);font-family:'Courier New',monospace;font-size:0.76rem;">May 23, 2026</td>
+        <td>
+          <div class="topic-title">Corporate Document — Google Doc Creation</div>
+          <div class="topic-sub">Full corporate command structure document created and stored in Google Drive</div>
+        </td>
+        <td><span class="cat-pill" style="background:#FF9B4C22;color:var(--cat-docs);border:1px solid #FF9B4C44;">Documentation</span></td>
+        <td><span class="entity-tag">Capital Asset Trust</span></td>
+        <td><span class="pri-dot">2</span></td>
+        <td><span class="status-pill s-complete">Complete</span></td>
+      </tr>
+
+      <tr>
+        <td><span class="toc-num">002-B</span></td>
+        <td style="white-space:nowrap;color:var(--muted);font-family:'Courier New',monospace;font-size:0.76rem;">May 23, 2026</td>
+        <td>
+          <div class="topic-title">Corporate Document — HTML Version</div>
+          <div class="topic-sub">Executive-grade HTML document with dark-gold design, committed and pushed to repo</div>
+        </td>
+        <td><span class="cat-pill" style="background:#FF9B4C22;color:var(--cat-docs);border:1px solid #FF9B4C44;">Documentation</span></td>
+        <td><span class="entity-tag">Capital Asset Trust</span></td>
+        <td><span class="pri-dot">2</span></td>
+        <td><span class="status-pill s-complete">Complete</span></td>
+      </tr>
+
+      <tr>
+        <td><span class="toc-num">003-A</span></td>
+        <td style="white-space:nowrap;color:var(--muted);font-family:'Courier New',monospace;font-size:0.76rem;">May 23, 2026</td>
+        <td>
+          <div class="topic-title">Table of Context — Master Filing System</div>
+          <div class="topic-sub">This document — master chat filing, action tracking, decision log, and focus queue</div>
+        </td>
+        <td><span class="cat-pill" style="background:#FF9B4C22;color:var(--cat-docs);border:1px solid #FF9B4C44;">Documentation</span></td>
+        <td><span class="entity-tag">All Entities</span></td>
+        <td><span class="pri-dot">1</span></td>
+        <td><span class="status-pill s-active">Active</span></td>
+      </tr>
+
+      <!-- OPEN ROWS FOR FUTURE SESSIONS -->
+      <tr style="opacity:0.35;">
+        <td><span class="toc-num">004</span></td>
+        <td style="color:var(--muted);font-family:'Courier New',monospace;font-size:0.76rem;">—</td>
+        <td><div class="topic-sub">Next session topic</div></td>
+        <td>—</td>
+        <td>—</td>
+        <td>—</td>
+        <td><span class="status-pill s-queued">Queued</span></td>
+      </tr>
+      <tr style="opacity:0.2;">
+        <td><span class="toc-num">005</span></td>
+        <td style="color:var(--muted);font-family:'Courier New',monospace;font-size:0.76rem;">—</td>
+        <td><div class="topic-sub">Next session topic</div></td>
+        <td>—</td>
+        <td>—</td>
+        <td>—</td>
+        <td><span class="status-pill s-queued">Queued</span></td>
+      </tr>
+
+    </tbody>
+  </table>
+
+  <!-- ── SECTION 2: ENTITY THREADS ── -->
+  <div id="threads" class="section-title"><h3>02 — Entity Discussion Threads</h3></div>
+  <div class="entity-threads">
+
+    <div class="thread-card">
+      <div class="thread-header" style="border-top:3px solid var(--gold);">
+        <div class="thread-entity-name" style="color:var(--gold);">Capital Asset Trust</div>
+        <div class="thread-count">3 topics</div>
+      </div>
+      <div class="thread-topic">
+        <div class="thread-session">001-A</div>
+        <div class="thread-text">Defined as Tier 1 — Holder, Director, Portfolio Manager, Investment Manager &amp; Protector of all entities<small>Role fully established. Structure documented.</small></div>
+      </div>
+      <div class="thread-topic">
+        <div class="thread-session">001-D</div>
+        <div class="thread-text">North Star Principles — 5 operating rules governing the entire structure<small>Rule 01: CAT holds EVERYTHING. No personal exposure.</small></div>
+      </div>
+      <div class="thread-topic">
+        <div class="thread-session">001-E</div>
+        <div class="thread-text">Legal trust formation identified as Priority 1 of 30-day action plan<small>Status: Action Required — attorney needed for trust documents + EIN</small></div>
+      </div>
+    </div>
+
+    <div class="thread-card">
+      <div class="thread-header" style="border-top:3px solid #4CA8C9;">
+        <div class="thread-entity-name" style="color:#4CA8C9;">Credit Rights Group</div>
+        <div class="thread-count">3 topics</div>
+      </div>
+      <div class="thread-topic">
+        <div class="thread-session">001-A</div>
+        <div class="thread-text">Defined as Tier 2 — Fuel Engine. Credit education, score management, and funding access for all entities<small>Milestone target: 750+ score, $500K+ business credit lines</small></div>
+      </div>
+      <div class="thread-topic">
+        <div class="thread-session">001-B</div>
+        <div class="thread-text">Assigned Priority 2 &amp; 3 in work table — credit assessment then funding pipeline<small>Both rated Critical and High urgency</small></div>
+      </div>
+      <div class="thread-topic">
+        <div class="thread-session">001-E</div>
+        <div class="thread-text">Credit baseline audit — pull all 3 bureaus — named as one of 3 immediate 30-day actions<small>Status: Action Required — cannot build funding strategy blind</small></div>
+      </div>
+    </div>
+
+    <div class="thread-card">
+      <div class="thread-header" style="border-top:3px solid #4CC97A;">
+        <div class="thread-entity-name" style="color:#4CC97A;">Lake River Partners</div>
+        <div class="thread-count">2 topics</div>
+      </div>
+      <div class="thread-topic">
+        <div class="thread-session">001-A</div>
+        <div class="thread-text">Defined as Tier 3 — Wealth Builder. Acquires &amp; oversees real estate and mortgage management companies<small>Milestone: First 3 managed properties producing cash flow</small></div>
+      </div>
+      <div class="thread-topic">
+        <div class="thread-session">001-B</div>
+        <div class="thread-text">Assigned Priority 4 — real estate acquisition strategy<small>Next action: Define target markets, deal criteria, management company targets</small></div>
+      </div>
+    </div>
+
+    <div class="thread-card">
+      <div class="thread-header" style="border-top:3px solid #C94CA8;">
+        <div class="thread-entity-name" style="color:#C94CA8;">Get-It Club</div>
+        <div class="thread-count">2 topics</div>
+      </div>
+      <div class="thread-topic">
+        <div class="thread-session">001-A</div>
+        <div class="thread-text">Defined as Tier 4 — Growth Engine. Marketing, advertising, sales &amp; lead gen for all entities and external clients<small>Serves internal companies AND client businesses for dual revenue</small></div>
+      </div>
+      <div class="thread-topic">
+        <div class="thread-session">001-B</div>
+        <div class="thread-text">Assigned Priority 6 — marketing infrastructure build<small>Next action: Lead gen systems, brand identity, client pipeline</small></div>
+      </div>
+    </div>
+
+    <div class="thread-card">
+      <div class="thread-header" style="border-top:3px solid #C94C4C;">
+        <div class="thread-entity-name" style="color:#C94C4C;">CyberSecurity Home Lab</div>
+        <div class="thread-count">3 topics</div>
+      </div>
+      <div class="thread-topic">
+        <div class="thread-session">001-A</div>
+        <div class="thread-text">Defined as Tier 5 — Protection Layer. Military-grade offensive &amp; defensive security. 24/7. Non-negotiable.<small>Protects all companies, assets, investments &amp; money across all entities</small></div>
+      </div>
+      <div class="thread-topic">
+        <div class="thread-session">001-B</div>
+        <div class="thread-text">Assigned Priority 5 — CyberSecurity baseline deployment<small>High urgency — audit current exposure before moving money or building credit</small></div>
+      </div>
+      <div class="thread-topic">
+        <div class="thread-session">001-E</div>
+        <div class="thread-text">Cybersecurity audit named as one of 3 immediate 30-day actions<small>Status: Action Required — lock digital doors before asset movement begins</small></div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ── SECTION 3: OPEN ACTIONS ── -->
+  <div id="actions" class="section-title"><h3>03 — Open Action Items</h3></div>
+  <div class="action-grid">
+
+    <div class="action-card" style="border-top:3px solid #FF6B6B;">
+      <div class="action-pri" style="background:#C94C4C22;color:#FF6B6B;border:1px solid #C94C4C44;">Critical</div>
+      <div class="action-num">01</div>
+      <div class="action-title">Trust Formation — Legal Structure</div>
+      <div class="action-entity">Capital Asset Trust</div>
+      <ul class="action-steps">
+        <li>Retain attorney specializing in corporate trust structures</li>
+        <li>Draft and execute trust documents</li>
+        <li>Obtain EIN for the trust entity</li>
+        <li>Establish trust bylaws and operating agreement</li>
+        <li>Open trust banking account</li>
+        <li>Transfer assets and entities under trust ownership</li>
+      </ul>
+    </div>
+
+    <div class="action-card" style="border-top:3px solid #FF6B6B;">
+      <div class="action-pri" style="background:#C94C4C22;color:#FF6B6B;border:1px solid #C94C4C44;">Critical</div>
+      <div class="action-num">02</div>
+      <div class="action-title">Credit Baseline — Full Bureau Assessment</div>
+      <div class="action-entity">Credit Rights Group</div>
+      <ul class="action-steps">
+        <li>Pull all 3 bureaus: Equifax, Experian, TransUnion — personal</li>
+        <li>Pull business credit reports for any existing entities</li>
+        <li>Document baseline scores and identify derogatory marks</li>
+        <li>Map disputes, deletions, and optimization opportunities</li>
+        <li>Build 90-day credit improvement action plan</li>
+      </ul>
+    </div>
+
+    <div class="action-card" style="border-top:3px solid var(--gold);">
+      <div class="action-pri" style="background:#C9A84C22;color:var(--gold-light);border:1px solid var(--gold-dark);">High</div>
+      <div class="action-num">03</div>
+      <div class="action-title">Funding &amp; Financing Pipeline</div>
+      <div class="action-entity">Credit Rights Group</div>
+      <ul class="action-steps">
+        <li>Research best business credit card programs (no-PG preferred)</li>
+        <li>Identify SBA loan programs applicable to the structure</li>
+        <li>Identify private lenders for real estate deals</li>
+        <li>Build financing comparison matrix (rates, terms, LTV)</li>
+      </ul>
+    </div>
+
+    <div class="action-card" style="border-top:3px solid #FF6B6B;">
+      <div class="action-pri" style="background:#C94C4C22;color:#FF6B6B;border:1px solid #C94C4C44;">Critical</div>
+      <div class="action-num">04</div>
+      <div class="action-title">CyberSecurity Baseline Audit</div>
+      <div class="action-entity">CyberSecurity Home Lab</div>
+      <ul class="action-steps">
+        <li>Audit current digital footprint and exposure across all entities</li>
+        <li>Deploy baseline threat monitoring and alerting</li>
+        <li>Secure all financial accounts with hardware 2FA</li>
+        <li>Establish VPN and secure communication protocols</li>
+        <li>Document incident response procedures</li>
+      </ul>
+    </div>
+
+    <div class="action-card" style="border-top:3px solid var(--gold);">
+      <div class="action-pri" style="background:#C9A84C22;color:var(--gold-light);border:1px solid var(--gold-dark);">High</div>
+      <div class="action-num">05</div>
+      <div class="action-title">Real Estate Acquisition Strategy</div>
+      <div class="action-entity">Lake River Partners</div>
+      <ul class="action-steps">
+        <li>Define target real estate markets (geography + asset class)</li>
+        <li>Set deal criteria: minimum cash-on-cash return, cap rate floor</li>
+        <li>Identify management companies to acquire or partner with</li>
+        <li>Build deal pipeline and underwriting model</li>
+      </ul>
+    </div>
+
+    <div class="action-card" style="border-top:3px solid #4CA8C9;">
+      <div class="action-pri" style="background:#4CA8C922;color:#7ECFED;border:1px solid #4CA8C944;">Medium</div>
+      <div class="action-num">06</div>
+      <div class="action-title">Marketing Infrastructure Build</div>
+      <div class="action-entity">Get-It Club</div>
+      <ul class="action-steps">
+        <li>Define brand identity for Get-It Club</li>
+        <li>Build lead generation system for internal entities</li>
+        <li>Establish client acquisition pipeline</li>
+        <li>Set up CRM and marketing automation tools</li>
+      </ul>
+    </div>
+
+  </div>
+
+  <!-- ── SECTION 4: DECISION LOG ── -->
+  <div id="decisions" class="section-title"><h3>04 — Decision Log</h3></div>
+  <table class="decision-table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Session</th>
+        <th>Decision</th>
+        <th>Rationale</th>
+        <th>Impact</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="dec-id">D-001</td>
+        <td style="color:var(--muted);font-family:'Courier New',monospace;font-size:0.75rem;">001-A</td>
+        <td><div class="dec-decision">5-Tier entity hierarchy established</div><div class="dec-rationale">CAT → CRG → LRP → GIC → CSHL priority order</div></td>
+        <td class="dec-rationale">Structure needed clear chain of command and dependency order to prioritize correctly</td>
+        <td><span class="status-pill s-complete">Locked</span></td>
+      </tr>
+      <tr>
+        <td class="dec-id">D-002</td>
+        <td style="color:var(--muted);font-family:'Courier New',monospace;font-size:0.76rem;">001-E</td>
+        <td><div class="dec-decision">3 actions must complete before all others</div><div class="dec-rationale">Trust formation, credit baseline, cybersecurity audit</div></td>
+        <td class="dec-rationale">Foundation must be legal, funded, and secure before building anything on top of it</td>
+        <td><span class="status-pill s-critical">Action Required</span></td>
+      </tr>
+      <tr>
+        <td class="dec-id">D-003</td>
+        <td style="color:var(--muted);font-family:'Courier New',monospace;font-size:0.76rem;">002-A</td>
+        <td><div class="dec-decision">All corporate documents maintained in Google Drive + HTML repo</div><div class="dec-rationale">Dual storage: cloud-accessible + version-controlled</div></td>
+        <td class="dec-rationale">Ensures documents are always accessible, backed up, and presentable to stakeholders</td>
+        <td><span class="status-pill s-complete">Locked</span></td>
+      </tr>
+      <tr>
+        <td class="dec-id">D-004</td>
+        <td style="color:var(--muted);font-family:'Courier New',monospace;font-size:0.76rem;">003-A</td>
+        <td><div class="dec-decision">Table of Context is the master filing system for all sessions</div><div class="dec-rationale">Updated each session — tracks topics, actions, decisions, goals, next focus</div></td>
+        <td class="dec-rationale">Without a tracking system we lose momentum, repeat ground, and miss critical next steps</td>
+        <td><span class="status-pill s-active">Active</span></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- ── NORTH STAR STRIP ── -->
+  <div class="section-title"><h3>North Star — 5 Operating Rules</h3></div>
+  <div class="north-strip">
+    <div class="north-item">
+      <div class="north-num">Rule 01</div>
+      <div class="north-co">Capital Asset Trust</div>
+      <div class="north-verb">Holds EVERYTHING. No personal exposure.</div>
+    </div>
+    <div class="north-item">
+      <div class="north-num">Rule 02</div>
+      <div class="north-co">Credit Rights Group</div>
+      <div class="north-verb">Funds EVERY move. Cash is king — credit is leverage.</div>
+    </div>
+    <div class="north-item">
+      <div class="north-num">Rule 03</div>
+      <div class="north-co">Lake River Partners</div>
+      <div class="north-verb">Builds WEALTH. Acquire, manage, compound.</div>
+    </div>
+    <div class="north-item">
+      <div class="north-num">Rule 04</div>
+      <div class="north-co">Get-It Club</div>
+      <div class="north-verb">Creates FLOW. Revenue for us and our clients.</div>
+    </div>
+    <div class="north-item">
+      <div class="north-num">Rule 05</div>
+      <div class="north-co">CyberSecurity Home Lab</div>
+      <div class="north-verb">PROTECTS it all. 24/7. No exceptions.</div>
+    </div>
+  </div>
+
+  <!-- ── SECTION 5: GOAL TRACKER ── -->
+  <div id="goals" class="section-title"><h3>05 — Life Goal Progress Tracker</h3></div>
+  <div class="goal-track">
+
+    <div class="goal-card">
+      <div class="goal-title">Financial Freedom / Passive Income</div>
+      <div class="goal-entity">Lake River Partners</div>
+      <div class="goal-bar-wrap"><div class="goal-bar" style="width:5%"></div></div>
+      <div class="goal-status-text"><span>In Progress</span>0 / 3 properties</div>
+    </div>
+
+    <div class="goal-card">
+      <div class="goal-title">Best Funding at Lowest Cost</div>
+      <div class="goal-entity">Credit Rights Group</div>
+      <div class="goal-bar-wrap"><div class="goal-bar" style="width:5%"></div></div>
+      <div class="goal-status-text"><span>In Progress</span>Baseline needed</div>
+    </div>
+
+    <div class="goal-card">
+      <div class="goal-title">Business Growth Without Grinding</div>
+      <div class="goal-entity">Get-It Club</div>
+      <div class="goal-bar-wrap"><div class="goal-bar" style="width:3%"></div></div>
+      <div class="goal-status-text"><span>Queued</span>Infrastructure pending</div>
+    </div>
+
+    <div class="goal-card">
+      <div class="goal-title">Complete Asset Protection</div>
+      <div class="goal-entity">Capital Asset Trust</div>
+      <div class="goal-bar-wrap"><div class="goal-bar" style="width:10%"></div></div>
+      <div class="goal-status-text"><span>In Progress</span>Structure defined</div>
+    </div>
+
+    <div class="goal-card">
+      <div class="goal-title">Digital &amp; Financial Security</div>
+      <div class="goal-entity">CyberSecurity Home Lab</div>
+      <div class="goal-bar-wrap"><div class="goal-bar" style="width:5%"></div></div>
+      <div class="goal-status-text"><span>In Progress</span>Audit pending</div>
+    </div>
+
+    <div class="goal-card">
+      <div class="goal-title">Time &amp; Location Freedom</div>
+      <div class="goal-entity">All Entities — Systemized</div>
+      <div class="goal-bar-wrap"><div class="goal-bar" style="width:8%"></div></div>
+      <div class="goal-status-text"><span>In Progress</span>Systems being built</div>
+    </div>
+
+  </div>
+
+  <!-- ── SECTION 6: NEXT FOCUS QUEUE ── -->
+  <div id="queue" class="section-title"><h3>06 — Next Focus Queue</h3></div>
+  <ol class="focus-queue">
+    <li>
+      <div class="fq-num">01</div>
+      <div>
+        <div class="fq-title">Retain Corporate Trust Attorney</div>
+        <div class="fq-sub">Find and hire an attorney specializing in corporate trust structures to begin trust formation documents, EIN application, and bylaws. This is the foundation — nothing is protected until this is done.</div>
+      </div>
+      <div class="fq-entity">Capital Asset<br>Trust</div>
+    </li>
+    <li>
+      <div class="fq-num">02</div>
+      <div>
+        <div class="fq-title">Full Credit Bureau Pull — All 3 Bureaus</div>
+        <div class="fq-sub">Pull personal credit reports from Equifax, Experian, and TransUnion. Pull any existing business credit reports. Document baseline scores. You cannot build a funding strategy without knowing the starting position.</div>
+      </div>
+      <div class="fq-entity">Credit Rights<br>Group</div>
+    </li>
+    <li>
+      <div class="fq-num">03</div>
+      <div>
+        <div class="fq-title">CyberSecurity Exposure Audit</div>
+        <div class="fq-sub">Audit current digital footprint before any money moves or credit profiles are built. Deploy baseline protections: hardware 2FA on all financial accounts, VPN, secure communications, and dark web monitoring.</div>
+      </div>
+      <div class="fq-entity">CyberSecurity<br>Home Lab</div>
+    </li>
+    <li>
+      <div class="fq-num">04</div>
+      <div>
+        <div class="fq-title">Business Funding Pipeline Research</div>
+        <div class="fq-sub">Identify business credit programs, no-PG credit cards, SBA programs, and private lending options. Build a comparison matrix of rates, terms, and requirements so we can stack funding intelligently.</div>
+      </div>
+      <div class="fq-entity">Credit Rights<br>Group</div>
+    </li>
+    <li>
+      <div class="fq-num">05</div>
+      <div>
+        <div class="fq-title">Real Estate Market &amp; Deal Criteria Definition</div>
+        <div class="fq-sub">Define target markets, asset classes, minimum return requirements (cash-on-cash, cap rate), and the profile of management companies Lake River Partners will acquire or partner with.</div>
+      </div>
+      <div class="fq-entity">Lake River<br>Partners</div>
+    </li>
+    <li>
+      <div class="fq-num">06</div>
+      <div>
+        <div class="fq-title">Get-It Club Brand &amp; Lead Gen System</div>
+        <div class="fq-sub">Define the Get-It Club brand identity, service offerings, pricing, and build the first automated lead generation system — initially serving our own internal entities, then expanding to external clients.</div>
+      </div>
+      <div class="fq-entity">Get-It Club</div>
+    </li>
+  </ol>
+
+</main>
+
+<!-- ════════════════ FOOTER ════════════════ -->
+<footer>
+  <p>
+    <strong>Capital Asset Trust</strong> &nbsp;|&nbsp;
+    Table of Context — Master Filing System &nbsp;|&nbsp;
+    Version 1.0 &nbsp;|&nbsp;
+    Sessions Logged: 2 &nbsp;|&nbsp;
+    Last Updated: May 23, 2026 &nbsp;|&nbsp;
+    Confidential
+  </p>
+</footer>
+
+</body>
+</html>
